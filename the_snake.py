@@ -158,7 +158,12 @@ def main():
     apple = Apple(0, 0)
     apple.randomize_position()
 
-    while True:
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
         clock.tick(SPEED)
         handle_keys(snake)
         snake.update_direction()
