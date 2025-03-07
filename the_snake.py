@@ -1,4 +1,5 @@
 import random
+
 import pygame
 
 # Константы для размеров поля и сетки:
@@ -178,4 +179,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
