@@ -77,21 +77,21 @@ class Apple(GameObject):
 class Snake(GameObject):
     """Класс для змейки, наследуется от GameObject."""
 
-     def __init__(self, position, color=(0, 255, 0)):
-         """Инициализирует змейку с позицией и цветом."""
-         super().__init__(position, color)
-         self.length = 1
-         self.positions = [position]
-         self.direction = 'RIGHT'
-         self.next_direction = None
-         self.last = None
+    def __init__(self, position, color=(0, 255, 0)):
+        """Инициализирует змейку с позицией и цветом."""
+        super().__init__(position, color)
+        self.length = 1
+        self.positions = [position]
+        self.direction = RIGHT
+        self.next_direction = None
+        self.last = None
+
 
     def update_direction(self):
         """Обновляет направление движения змейки."""
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
-
 
     def move(self):
         """Обновляет позицию змейки."""
@@ -115,11 +115,11 @@ class Snake(GameObject):
 
         for position in self.positions[:-1]:
             rect = (pygame.Rect(position, (GRID_SIZE, GRID_SIZE)))
-            pygame.draw.rect(screen, self.body_color, rect)
+            pygame.draw.rect(screen, self.color, rect)
             pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
         head_rect = pygame.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
-        pygame.draw.rect(screen, self.body_color, head_rect)
+        pygame.draw.rect(screen, self.color, head_rect)
         pygame.draw.rect(screen, BORDER_COLOR, head_rect, 1)
 
     def get_head_position(self):
