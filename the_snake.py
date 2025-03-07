@@ -42,10 +42,10 @@ clock = pygame.time.Clock()
 class GameObject:
     """Базовый класс."""
 
-    def __init__(self, position=(0, 0), color=None):
+    def __init__(self, position=(0, 0), body_color=None):
         """Инициализирует объект с позицией и цветом."""
         self.position = position
-        self.color = color
+        self.body_color = body_color
 
     def draw(self):
         """Метод заглушка для наследников."""
@@ -55,9 +55,9 @@ class GameObject:
 class Apple(GameObject):
     """Класс для яблока, наследуется от GameObject."""
 
-    def __init__(self, position=(0, 0), color=APPLE_COLOR):
+    def __init__(self, position=(0, 0), body_color=APPLE_COLOR):
         """Инициализирует яблоко с позицией и цветом."""
-        super().__init__(position, color)
+        super().__init__(position, body_color)
         self.randomize_position()
 
     def randomize_position(self):
@@ -70,16 +70,16 @@ class Apple(GameObject):
     def draw(self):
         """Рисует яблоко на экране."""
         rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
-        pygame.draw.rect(screen, self.color, rect)
+        pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
 
 class Snake(GameObject):
     """Класс для змейки, наследуется от GameObject."""
 
-    def __init__(self, position=(0, 0), color=SNAKE_COLOR):
+    def __init__(self, position=(0, 0), body_color=SNAKE_COLOR):
         """Инициализирует змейку с позицией и цветом."""
-        super().__init__(position, color)
+        super().__init__(position, body_color)
         self.length = 1
         self.positions = [position]
         self.direction = RIGHT
@@ -114,11 +114,11 @@ class Snake(GameObject):
 
         for position in self.positions[:-1]:
             rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
-            pygame.draw.rect(screen, self.color, rect)
+            pygame.draw.rect(screen, self.body_color, rect)
             pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
         head_rect = pygame.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
-        pygame.draw.rect(screen, self.color, head_rect)
+        pygame.draw.rect(screen, self.body_color, head_rect)
         pygame.draw.rect(screen, BORDER_COLOR, head_rect, 1)
 
     def get_head_position(self):
