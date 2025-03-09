@@ -1,6 +1,5 @@
 import random
-
-import pg
+import pygame as pg
 
 # Константы для размеров поля и сетки:
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
@@ -62,7 +61,7 @@ class Apple(GameObject):
 
     def __init__(self, body_color=APPLE_COLOR):
         """Инициализирует яблоко с позицией и цветом."""
-        super().__init__(body_color)
+        super().__init__(body_color=body_color)
         self.randomize_position()
 
     def randomize_position(self, occupied_positions=None):
@@ -190,7 +189,6 @@ def main():
                 apple.randomize_position(snake.positions)
             except ValueError:
                 running = False
-            apple.randomize_position(snake.positions)
         elif snake.get_head_position() in snake.positions[1:]:
             running = False
 
@@ -198,6 +196,7 @@ def main():
         snake.draw()
         apple.draw()
         pg.display.update()
+
     pg.quit()
 
 
