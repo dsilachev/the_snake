@@ -52,7 +52,9 @@ class GameObject:
 
     def draw(self):
         """Метод-заглушка для наследников."""
-        raise NotImplementedError('Метод draw будет переопределён в дочерних классах')
+        raise NotImplementedError(
+            'Метод draw будет переопределён в дочерних классах'
+        )
 
 
 class Apple(GameObject):
