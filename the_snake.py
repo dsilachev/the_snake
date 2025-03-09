@@ -84,9 +84,7 @@ class Apple(GameObject):
         if not free_positions:
             raise ValueError('Нет позиций для яблока.')
 
-        grid_x = random.randint(0, GRID_WIDTH - 1) * GRID_SIZE
-        grid_y = random.randint(0, GRID_HEIGHT - 1) * GRID_SIZE
-        self.position = (grid_x, grid_y)
+        self.position = random.choice(free_positions)
 
     def draw(self):
         """Рисует яблоко на экране."""
@@ -166,6 +164,10 @@ def handle_keys(game_object):
                 game_object.next_direction = LEFT
             elif event.key == pg.K_RIGHT and game_object.direction != LEFT:
                 game_object.next_direction = RIGHT
+            elif event.key == pg.K_ESCAPE: # Для упрощения выхода из игры.
+                pg.quit()
+                raise SystemExit
+
 
 
 def main():
