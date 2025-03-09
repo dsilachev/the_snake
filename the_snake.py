@@ -186,14 +186,19 @@ def main():
 
         if snake.get_head_position() == apple.position:
             snake.length += 1
+            try:
+                apple.randomize_position(snake.positions)
+            except ValueError:
+                running = False
             apple.randomize_position(snake.positions)
         elif snake.get_head_position() in snake.positions[1:]:
-            snake.reset()
+            running = False
 
         screen.fill(BOARD_BACKGROUND_COLOR)
         snake.draw()
         apple.draw()
         pg.display.update()
+    pg.quit()
 
 
 if __name__ == '__main__':
