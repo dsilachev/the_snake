@@ -65,10 +65,10 @@ class Apple(GameObject):
         super().__init__(body_color)
         self.randomize_position()
 
-    def randomize_position(self, occupied_position=None):
+    def randomize_position(self, occupied_positions=None):
         """Устанавливает случайное положение яблока."""
-        if occupied_position is None:
-            occupied_position = []
+        if occupied_positions is None:
+            occupied_positions = []
 
         all_positions = [
             (grid_x * GRID_SIZE, grid_y * GRID_SIZE)
@@ -78,7 +78,7 @@ class Apple(GameObject):
 
         free_positions = [
             pos for pos in all_positions
-            if pos not in occupied_position
+            if pos not in occupied_positions
         ]
 
         if not free_positions:
@@ -117,9 +117,10 @@ class Snake(GameObject):
         new_y = (head_y + direction_y * GRID_SIZE) % SCREEN_HEIGHT
         new_head = (new_x, new_y)
         self.positions.insert(0, new_head)
-        self.last = (self.positions.pop()
-                     if len(self.positions) > self.length
-                     else None
+        self.last = (
+            self.positions.pop()
+            if len(self.positions) > self.length
+            else None
         )
 
     def draw(self):
