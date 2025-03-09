@@ -117,7 +117,10 @@ class Snake(GameObject):
         new_y = (head_y + direction_y * GRID_SIZE) % SCREEN_HEIGHT
         new_head = (new_x, new_y)
         self.positions.insert(0, new_head)
-        self.last = self.positions.pop() if len(self.positions) > self.length else None
+        self.last = (self.positions.pop()
+                     if len(self.positions) > self.length
+                     else None
+        )
 
     def draw(self):
         """Рисует змейку на экране."""
