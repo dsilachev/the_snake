@@ -74,12 +74,17 @@ class Apple(GameObject):
             for grid_y in range(GRID_HEIGHT)
         ]
 
-        free_positions = [pos for pos in all_positions if pos not in occupied_position]
+        free_positions = [
+            pos for pos in all_positions
+            if pos not in occupied_position
+        ]
 
         if not free_positions:
-            raise ValueError("Нет позиций для яблока.")
+            raise ValueError('Нет позиций для яблока.')
 
-        self.position = random.choice(free_positions)
+        grid_x = random.randint(0, GRID_WIDTH - 1) * GRID_SIZE
+        grid_y = random.randint(0, GRID_HEIGHT - 1) * GRID_SIZE
+        self.position = (grid_x, grid_y)
 
     def draw(self):
         """Рисует яблоко на экране."""
@@ -106,10 +111,9 @@ class Snake(GameObject):
         """Обновляет позицию змейки."""
         head_x, head_y = self.positions[0]
         direction_x, direction_y = self.direction
-        new_head = (
-            (head_x + direction_x * GRID_SIZE) % SCREEN_WIDTH,
-            (head_y + direction_y * GRID_SIZE) % SCREEN_HEIGHT
-        )
+        new_x = (head_x + direction_x * GRID_SIZE) % SCREEN_WIDTH
+        new_y = (head_y + direction_y * GRID_SIZE) % SCREEN_HEIGHT
+        new_head = (new_x, new_y)
         self.positions.insert(0, new_head)
         self.last = self.positions.pop() if len(self.positions) > self.length else None
 
