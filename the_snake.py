@@ -1,5 +1,5 @@
-import random
 import pygame as pg
+import random
 
 
 # Константы для размеров поля и сетки:
@@ -63,7 +63,7 @@ class GameObject:
     def draw(self):
         """Метод-заглушка для наследников."""
         raise NotImplementedError(
-            'Метод draw будет'
+            'Метод draw будет '
             'переопределён в дочерних классах'
         )
 
